@@ -7,6 +7,9 @@ import { CreateGame } from './application/useCase/createGame.useCase';
 @Module({
   controllers: [GameController],
   providers: [
+    GameController,
+    GameMongoRepository,
+
     {
       provide: GameRepository,
       useClass: GameMongoRepository,
