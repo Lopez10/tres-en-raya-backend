@@ -1,7 +1,7 @@
 export interface Game {
   id: string;
   status: GameStatus;
-  board: string[][];
+  board: string[];
   player: string;
 }
 
