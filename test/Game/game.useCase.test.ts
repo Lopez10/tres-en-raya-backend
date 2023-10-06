@@ -1,6 +1,8 @@
 import { GameMockRepository } from './game.mock.repository';
-import { Game } from '../../src/game/core/game.interface';
-import { CreateGame } from '../../src/game/application/useCase/createGame.useCase';
+import {
+  CreateGame,
+  CreateGameDTO,
+} from '../../src/game/application/useCase/createGame.useCase';
 
 describe('Create game', () => {
   it(`
@@ -9,7 +11,7 @@ describe('Create game', () => {
     THEN the game is saved in the database
   `, async () => {
     // GIVEN
-    const game: Game = {
+    const game: CreateGameDTO = {
       id: '123',
       status: 'IN_PROGRESS',
       board: ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'],

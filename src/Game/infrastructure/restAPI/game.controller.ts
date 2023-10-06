@@ -1,13 +1,19 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { Game } from '../../core/game.interface';
-import { CreateGame } from '../../application/useCase/createGame.useCase';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
+import {
+  CreateGame,
+  CreateGameDTO,
+} from '../../application/useCase/createGame.useCase';
+import { GameMongoRepository } from '../repository/game.mongo.repository';
 
 @Controller('game')
 export class GameController {
-  constructor(private readonly createGameUseCase: CreateGame) {}
-
+  constructor(
+    @Inject(GameMongoRepository)
+    private readonly gameMongoRepository: GameMongoRepository,
+  ) {}
   @Post()
-  async createGame(@Body() game: Game): Promise<boolean> {
-    return this.createGameUseCase.run(game);
+  async createGame(@Body() game: CreateGameDTO): Promise<boolean> {
+    const createGameUseCase = new CreateGame(this.gameMongoRepository);
+    return createGameUseCase.run(game);
   }
 }

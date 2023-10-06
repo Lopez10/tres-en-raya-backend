@@ -1,5 +1,5 @@
 import { PrismaClient, Game as GameModel } from '@prisma/client';
-import { Game } from '../../core/game.interface';
+import { Game, GameStatusEnum } from '../../core/game.interface';
 import { GameRepository } from '../../core/game.repository';
 import { Injectable } from '@nestjs/common';
 
@@ -13,7 +13,12 @@ export class GameMongoRepository implements GameRepository {
   async create(game: Game): Promise<Game> {
     const gameCreated = await this.prisma.game.create({ data: game });
 
-    return gameCreated;
+    return {
+      id: gameCreated.id,
+      status: gameCreated.status as GameStatusEnum,
+      board: gameCreated.board,
+      playerId: gameCreated.playerId,
+    };
   }
 
   async findById(id: string): Promise<Game | undefined> {
@@ -23,6 +28,11 @@ export class GameMongoRepository implements GameRepository {
 
     if (!game) return undefined;
 
-    return game;
+    return {
+      id: game.id,
+      status: game.status as GameStatusEnum,
+      board: game.board,
+      playerId: game.playerId,
+    };
   }
 }
