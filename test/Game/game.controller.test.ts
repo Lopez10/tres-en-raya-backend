@@ -1,6 +1,6 @@
-import { GameController } from '../../src/Game/Game.controller';
+import { GameController } from '../../src/Game/game.controller';
 import { GameMockRepository } from './game.mock.repository';
-import { Game, GameStatus } from '../../src/Game/Game.interface';
+import { Game, GameStatus } from '../../src/Game/game.interface';
 
 describe('Game controller', () => {
   it(`
