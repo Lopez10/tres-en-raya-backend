@@ -1,17 +1,17 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { GameRepositoryInterface } from '../../core/game.repository.interface';
+import { GameRepository } from '../../core/game.repository';
 import { Game } from '../../core/game.interface';
 import { UseCase } from 'src/common/useCase.base';
 
 @Injectable()
 export class CreateGame implements UseCase<Game, void> {
   constructor(
-    @Inject(GameRepositoryInterface)
-    private readonly gameRepository: GameRepositoryInterface,
+    @Inject(GameRepository)
+    private readonly gameRepository: GameRepository,
   ) {}
   async run(game: Game): Promise<boolean> {
     try {
-      await this.gameRepository.insert(game);
+      await this.gameRepository.create(game);
       return true;
     } catch (error) {
       console.log(error);

@@ -1,5 +1,5 @@
 import { GameMockRepository } from './game.mock.repository';
-import { Game, GameStatus } from '../../src/game/core/game.interface';
+import { Game } from '../../src/game/core/game.interface';
 import { CreateGame } from '../../src/game/application/useCase/createGame.useCase';
 
 describe('Create game', () => {
@@ -11,7 +11,7 @@ describe('Create game', () => {
     // GIVEN
     const game: Game = {
       id: '123',
-      status: 'IN_PROGRES' as GameStatus,
+      status: 'IN_PROGRESS',
       board: ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'],
       playerId: '123',
     };
