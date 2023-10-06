@@ -1,23 +1,19 @@
 import { PrismaClient, Game as GameModel } from '@prisma/client';
-import { Game, GameStatus } from '../../core/game.interface';
-import { GameRepositoryInterface } from '../../core/game.repository.interface';
+import { Game } from '../../core/game.interface';
+import { GameRepository } from '../../core/game.repository';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class GameMongoRepository implements GameRepositoryInterface {
+export class GameMongoRepository implements GameRepository {
   private prisma: PrismaClient;
   constructor() {
     this.prisma = new PrismaClient();
   }
 
-  async insert(game: Game): Promise<void> {
-    const data: GameModel = {
-      id: game.id,
-      status: game.status,
-      board: game.board,
-      playerId: game.playerId,
-    };
-    await this.prisma.game.create({ data });
+  async create(game: Game): Promise<Game> {
+    const gameCreated = await this.prisma.game.create({ data: game });
+
+    return gameCreated;
   }
 
   async findById(id: string): Promise<Game | undefined> {
@@ -26,11 +22,7 @@ export class GameMongoRepository implements GameRepositoryInterface {
     });
 
     if (!game) return undefined;
-    return {
-      id: game.id,
-      status: game.status as GameStatus,
-      board: game.board,
-      playerId: game.playerId,
-    };
+
+    return game;
   }
 }
