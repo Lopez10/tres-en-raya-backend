@@ -8,15 +8,20 @@ datasource db {
 }
 
 model Game {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  status   String
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  status   GameStatus
   board    String[]
-  player   Player   @relation(fields: [playerId], references: [id])
-  playerId String   @db.ObjectId
+  player   Player     @relation(fields: [playerId], references: [id])
+  playerId String     @db.ObjectId
 }
 
 model Player {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   username String @unique
   games    Game[]
+}
+
+enum GameStatus {
+  IN_PROGRESS
+  FINISHED
 }
