@@ -1,8 +1,8 @@
 import { GameMockRepository } from './game.mock.repository';
 import { Game, GameStatus } from '../../src/game/game.interface';
-import { GameService } from '../../src/game/game.service';
+import { CreateGame } from '../../src/game/application/useCase/createGame.useCase';
 
-describe('Game Service', () => {
+describe('Create game', () => {
   it(`
     GIVEN a valid data game 
     WHEN I create the game with the data
@@ -17,8 +17,8 @@ describe('Game Service', () => {
     };
     // WHEN
     const gameRepository = new GameMockRepository();
-    const gameService = new GameService(gameRepository);
-    await gameService.createGame(game);
+    const createGame = new CreateGame(gameRepository);
+    await createGame.run(game);
 
     // THEN
     const gameSaved = await gameRepository.findById(game.id);

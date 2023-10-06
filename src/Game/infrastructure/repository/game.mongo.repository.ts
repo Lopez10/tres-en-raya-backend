@@ -1,6 +1,6 @@
 import { PrismaClient, Game as GameModel } from '@prisma/client';
-import { Game, GameStatus } from './game.interface';
-import { GameRepositoryInterface } from './game.repository.interface';
+import { Game, GameStatus } from '../../game.interface';
+import { GameRepositoryInterface } from '../../game.repository.interface';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
