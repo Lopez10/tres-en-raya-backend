@@ -1,5 +1,5 @@
 import { GameMockRepository } from './game.mock.repository';
-import { Game, GameStatus } from '../../src/game/game.interface';
+import { Game, GameStatus } from '../../src/game/core/game.interface';
 import { CreateGame } from '../../src/game/application/useCase/createGame.useCase';
 
 describe('Create game', () => {

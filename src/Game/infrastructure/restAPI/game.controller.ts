@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { Game } from '../../game.interface';
+import { Game } from '../../core/game.interface';
 import { CreateGame } from '../../application/useCase/createGame.useCase';
 
 @Controller('game')

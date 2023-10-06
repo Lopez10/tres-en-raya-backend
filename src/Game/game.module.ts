@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { GameController } from './infrastructure/restAPI/game.controller';
 import { GameMongoRepository } from './infrastructure/repository/game.mongo.repository';
-import { GameRepositoryInterface } from './game.repository.interface';
+import { GameRepositoryInterface } from './core/game.repository.interface';
 import { CreateGame } from './application/useCase/createGame.useCase';
 
 @Module({

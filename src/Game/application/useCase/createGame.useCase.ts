@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { GameRepositoryInterface } from '../../game.repository.interface';
-import { Game } from '../../game.interface';
+import { GameRepositoryInterface } from '../../core/game.repository.interface';
+import { Game } from '../../core/game.interface';
 import { UseCase } from 'src/common/useCase.base';
 
 @Injectable()
