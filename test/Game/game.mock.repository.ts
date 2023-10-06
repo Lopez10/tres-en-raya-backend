@@ -1,11 +1,12 @@
 import { Game } from 'src/game/core/game.interface';
-import { GameRepositoryInterface } from 'src/game/core/game.repository.interface';
+import { GameRepository } from 'src/game/core/game.repository';
 
-export class GameMockRepository implements GameRepositoryInterface {
+export class GameMockRepository implements GameRepository {
   private games: Game[] = [];
 
-  async insert(game: Game): Promise<void> {
+  async create(game: Game): Promise<Game> {
     this.games.push(game);
+    return game;
   }
 
   async findById(id: string): Promise<Game | undefined> {
