@@ -2,10 +2,10 @@ export interface Game {
   id: string;
   status: GameStatus;
   board: string[];
-  player: string;
+  playerId: string;
 }
 
-enum GameStatus {
+export enum GameStatus {
   IN_PROGRES = 'IN_PROGRES',
   FINISHED = 'FINISHED',
 }
