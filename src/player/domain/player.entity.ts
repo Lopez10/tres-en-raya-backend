@@ -1,7 +1,7 @@
 import { Entity } from 'src/common/entity.base';
 import { ID } from 'src/common/valueObjects/ID.valueObject';
 
-export interface playerProps {
+interface playerProps {
   username: string;
   wins: number;
   losses: number;

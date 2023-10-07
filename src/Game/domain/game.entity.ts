@@ -6,7 +6,7 @@ export enum GameStatus {
   FINISHED = 'FINISHED',
 }
 
-export interface GameProps {
+interface GameProps {
   status: GameStatus;
   turn: string;
   board: string[];
