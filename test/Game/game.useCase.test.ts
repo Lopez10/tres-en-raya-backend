@@ -14,6 +14,7 @@ describe('Create game', () => {
     const game: CreateGameDTO = {
       id: '123',
       status: 'IN_PROGRESS',
+      turn: '123',
       board: ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'],
       playerId: '123',
     };
