@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Inject } from '@nestjs/common';
 import { PlayerMongoRepository } from '../repository/player.mongo.repository';
-import { Player } from '@prisma/client';
 import { CreatePlayer } from 'src/player/application/useCase/createPlayer.useCase';
+import { Player } from 'src/player/core/player.interface';
 
 @Controller('players')
 export class PlayerController {
