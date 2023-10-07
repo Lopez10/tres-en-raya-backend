@@ -11,8 +11,8 @@ export class GameMongoRepository implements GameRepository {
     this.prisma = new PrismaClient();
   }
 
-  async create(game: CreateGameDTO): Promise<Game> {
-    const gameCreated = await this.prisma.game.create({ data: game });
+  async create(createGameDTO: CreateGameDTO): Promise<Game> {
+    const gameCreated = await this.prisma.game.create({ data: createGameDTO });
 
     return {
       id: gameCreated.id,
