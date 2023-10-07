@@ -5,10 +5,9 @@ import { PlayerRepository } from '../../domain/player.repository';
 
 export interface UpdateRankingDTO {
   username: string;
-  wins?: number;
-  losses?: number;
-  draws?: number;
+  result: 'WIN' | 'LOST' | 'DRAW';
 }
+
 @Injectable()
 export class UpdateRankingUseCase
   implements UseCase<UpdateRankingDTO, Promise<Player>>
@@ -18,9 +17,17 @@ export class UpdateRankingUseCase
     private readonly playerRepository: PlayerRepository,
   ) {}
 
-  async run(updateRankingDTO: UpdateRankingDTO): Promise<Player> {
+  async run({ username, result }: UpdateRankingDTO): Promise<Player> {
     try {
-      return;
+      const player = await this.playerRepository.findByUsername(username);
+
+      if (!player) throw new Error('Player not found');
+
+      player.updateRanking(result);
+
+      const playerUpdated = this.playerRepository.update(player);
+
+      return playerUpdated;
     } catch (error) {
       throw new Error(error);
     }

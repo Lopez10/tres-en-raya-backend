@@ -1,4 +1,3 @@
-import { UpdateRankingDTO } from 'src/player/application/useCase/updateRanking.useCase';
 import { ID } from '../../src/common/valueObjects/ID.valueObject';
 import { Player } from '../../src/player/domain/player.entity';
 import { PlayerRepository } from '../../src/player/domain/player.repository';

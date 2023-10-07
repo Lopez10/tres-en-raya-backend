@@ -19,13 +19,14 @@ describe('Update ranking', () => {
     // WHEN
     const updateRankingDTO: UpdateRankingDTO = {
       username,
-      wins: 1,
+      result: 'WIN',
     };
-    const playerDTO = await updateRanking.run(updateRankingDTO);
+    await updateRanking.run(updateRankingDTO);
     // THEN
-    expect(playerDTO.getPropsCopy().username).toEqual(username);
-    expect(playerDTO.getPropsCopy().wins).toEqual(1);
-    expect(playerDTO.getPropsCopy().losses).toEqual(0);
-    expect(playerDTO.getPropsCopy().draws).toEqual(0);
+    const playerUpdated = await playerRepository.findByUsername(username);
+    expect(playerUpdated.getPropsCopy().username).toEqual(username);
+    expect(playerUpdated.getPropsCopy().wins).toEqual(1);
+    expect(playerUpdated.getPropsCopy().losses).toEqual(0);
+    expect(playerUpdated.getPropsCopy().draws).toEqual(0);
   });
 });
