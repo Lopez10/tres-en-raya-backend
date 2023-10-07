@@ -1,6 +1,6 @@
 import { GetRankingUseCase } from '../../src/player/application/useCase/getRanking.useCase';
-import { PlayerMockRepository } from './player.mock.repository';
-import { addPlayerToRepository } from './addPlayerToRepository';
+import { PlayerMockRepository } from './repository/player.mock.repository';
+import { addPlayerToRepository } from './repository/addPlayerToRepository';
 
 describe('Get ranking', () => {
   it(`

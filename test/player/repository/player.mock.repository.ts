@@ -1,7 +1,7 @@
-import { ID } from '../../src/common/valueObjects/ID.valueObject';
-import { Player } from '../../src/player/domain/player.entity';
-import { PlayerRepository } from '../../src/player/domain/player.repository';
-import { PlayerDTO, PlayerMapper } from '../../src/player/player.mapper';
+import { ID } from '../../../src/common/valueObjects/ID.valueObject';
+import { Player } from '../../../src/player/domain/player.entity';
+import { PlayerRepository } from '../../../src/player/domain/player.repository';
+import { PlayerDTO, PlayerMapper } from '../../../src/player/player.mapper';
 
 export class PlayerMockRepository implements PlayerRepository {
   private players: PlayerDTO[] = [];

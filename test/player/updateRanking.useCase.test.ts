@@ -2,8 +2,8 @@ import {
   UpdateRankingDTO,
   UpdateRankingUseCase,
 } from '../../src/player/application/useCase/updateRanking.useCase';
-import { addPlayerToRepository } from './addPlayerToRepository';
-import { PlayerMockRepository } from './player.mock.repository';
+import { addPlayerToRepository } from './repository/addPlayerToRepository';
+import { PlayerMockRepository } from './repository/player.mock.repository';
 
 describe('Update ranking', () => {
   it(`

@@ -1,7 +1,7 @@
-import { GameDTO, GameMapper } from '../../src/game/game.mapper';
-import { ID } from '../../src/common/valueObjects/ID.valueObject';
-import { Game } from '../../src/game/domain/game.entity';
-import { GameRepository } from '../../src/game/domain/game.repository';
+import { GameDTO, GameMapper } from '../../../src/game/game.mapper';
+import { ID } from '../../../src/common/valueObjects/ID.valueObject';
+import { Game } from '../../../src/game/domain/game.entity';
+import { GameRepository } from '../../../src/game/domain/game.repository';
 
 export class GameMockRepository implements GameRepository {
   private games: GameDTO[] = [];

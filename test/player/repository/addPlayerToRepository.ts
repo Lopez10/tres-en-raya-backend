@@ -1,5 +1,5 @@
-import { PlayerRepository } from '../../src/player/domain/player.repository';
-import { Player } from '../../src/player/domain/player.entity';
+import { PlayerRepository } from '../../../src/player/domain/player.repository';
+import { Player } from '../../../src/player/domain/player.entity';
 
 export function addPlayerToRepository(playerRepository: PlayerRepository) {
   playerRepository.create(
