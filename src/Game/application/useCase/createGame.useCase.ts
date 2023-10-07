@@ -6,6 +6,7 @@ import { UseCase } from 'src/common/useCase.base';
 export interface CreateGameDTO {
   id: string;
   status: string;
+  turn: string;
   board: string[];
   playerId: string;
 }
@@ -21,6 +22,7 @@ export class CreateGame implements UseCase<CreateGameDTO, Promise<Game>> {
       const game: Game = {
         id: createGameDTO.id,
         status: createGameDTO.status as GameStatus,
+        turn: createGameDTO.turn,
         board: createGameDTO.board,
         playerId: createGameDTO.playerId,
       };

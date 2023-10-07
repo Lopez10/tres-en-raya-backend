@@ -1,6 +1,7 @@
 export interface Game {
   id: string;
   status: GameStatusEnum;
+  turn: string;
   board: string[];
   playerId: string;
 }

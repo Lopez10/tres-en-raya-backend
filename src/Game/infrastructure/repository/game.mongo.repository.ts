@@ -17,6 +17,7 @@ export class GameMongoRepository implements GameRepository {
     return {
       id: gameCreated.id,
       status: gameCreated.status as GameStatusEnum,
+      turn: gameCreated.turn,
       board: gameCreated.board,
       playerId: gameCreated.playerId,
     };
@@ -32,6 +33,7 @@ export class GameMongoRepository implements GameRepository {
     return {
       id: game.id,
       status: game.status as GameStatusEnum,
+      turn: game.turn,
       board: game.board,
       playerId: game.playerId,
     };
