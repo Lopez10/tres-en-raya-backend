@@ -4,7 +4,7 @@ import { PlayerRepository } from 'src/player/domain/player.repository';
 import { PlayerDTO, PlayerMapper } from 'src/player/player.mapper';
 
 @Injectable()
-export class CreatePlayer implements UseCase<PlayerDTO, Promise<void>> {
+export class CreatePlayerUseCase implements UseCase<PlayerDTO, Promise<void>> {
   constructor(
     @Inject(PlayerRepository)
     private readonly playerRepository: PlayerRepository,

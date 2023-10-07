@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { PlayerRepository } from './domain/player.repository';
 import { PlayerMongoRepository } from './infrastructure/repository/player.mongo.repository';
-import { CreatePlayer } from './application/useCase/createPlayer.useCase';
+import { CreatePlayerUseCase } from './application/useCase/createPlayer.useCase';
 import { PlayerController } from './infrastructure/restAPI/player.controller';
 
 @Module({
@@ -14,7 +14,7 @@ import { PlayerController } from './infrastructure/restAPI/player.controller';
       provide: PlayerRepository,
       useClass: PlayerMongoRepository,
     },
-    CreatePlayer,
+    CreatePlayerUseCase,
   ],
 })
 export class PlayerModule {}
