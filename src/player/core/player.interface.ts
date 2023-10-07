@@ -2,6 +2,6 @@ export interface Player {
   id: string;
   username: string;
   wins: number;
-  loses: number;
+  losses: number;
   draws: number;
 }
