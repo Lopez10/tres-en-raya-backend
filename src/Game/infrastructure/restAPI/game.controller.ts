@@ -6,7 +6,7 @@ import {
 import { GameMongoRepository } from '../repository/game.mongo.repository';
 import { Game } from 'src/game/core/game.interface';
 
-@Controller('game')
+@Controller('games')
 export class GameController {
   constructor(
     @Inject(GameMongoRepository)
