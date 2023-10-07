@@ -1,14 +1,13 @@
-import { Entity } from 'src/common/entity.base';
-import { ID } from 'src/common/valueObjects/ID.valueObject';
+import { Entity } from '../../common/entity.base';
+import { ID } from '../../common/valueObjects/ID.valueObject';
 
-export enum GameStatusEnum {
+export enum GameStatus {
   IN_PROGRESS = 'IN_PROGRESS',
   FINISHED = 'FINISHED',
 }
 
 export interface GameProps {
-  id: string;
-  status: GameStatusEnum;
+  status: GameStatus;
   turn: string;
   board: string[];
   playerId: string;

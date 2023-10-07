@@ -3,6 +3,7 @@ import {
   CreateGame,
   CreateGameDTO,
 } from '../../src/game/application/useCase/createGame.useCase';
+import { ID } from '../../src/common/valueObjects/ID.valueObject';
 
 describe('Create game', () => {
   it(`
@@ -24,7 +25,13 @@ describe('Create game', () => {
     await createGame.run(game);
 
     // THEN
-    const gameSaved = await gameRepository.findById(game.id);
-    expect(gameSaved).toEqual(game);
+    const gameID = new ID(game.id);
+    const gameSaved = await gameRepository.findById(gameID);
+
+    expect(gameSaved.getPropsCopy().board).toEqual(game.board);
+    expect(gameSaved.getPropsCopy().status).toEqual(game.status);
+    expect(gameSaved.getPropsCopy().turn).toEqual(game.turn);
+    expect(gameSaved.getPropsCopy().playerId).toEqual(game.playerId);
+    expect(gameSaved.getPropsCopy().id.value).toEqual(game.id);
   });
 });
