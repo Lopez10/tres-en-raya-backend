@@ -11,12 +11,12 @@ export interface CreateGameDTO {
 }
 
 @Injectable()
-export class CreateGame implements UseCase<CreateGameDTO, Promise<boolean>> {
+export class CreateGame implements UseCase<CreateGameDTO, Promise<Game>> {
   constructor(
     @Inject(GameRepository)
     private readonly gameRepository: GameRepository,
   ) {}
-  async run(createGameDTO: CreateGameDTO): Promise<boolean> {
+  async run(createGameDTO: CreateGameDTO): Promise<Game> {
     try {
       const game: Game = {
         id: createGameDTO.id,
@@ -24,11 +24,10 @@ export class CreateGame implements UseCase<CreateGameDTO, Promise<boolean>> {
         board: createGameDTO.board,
         playerId: createGameDTO.playerId,
       };
-      await this.gameRepository.create(game);
-      return true;
+      const gameCreated = await this.gameRepository.create(game);
+      return gameCreated;
     } catch (error) {
-      console.log(error);
-      return false;
+      throw new Error(error);
     }
   }
 }

@@ -2,6 +2,7 @@ import { PrismaClient, Game as GameModel } from '@prisma/client';
 import { Game, GameStatusEnum } from '../../core/game.interface';
 import { GameRepository } from '../../core/game.repository';
 import { Injectable } from '@nestjs/common';
+import { CreateGameDTO } from 'src/game/application/useCase/createGame.useCase';
 
 @Injectable()
 export class GameMongoRepository implements GameRepository {
@@ -10,7 +11,7 @@ export class GameMongoRepository implements GameRepository {
     this.prisma = new PrismaClient();
   }
 
-  async create(game: Game): Promise<Game> {
+  async create(game: CreateGameDTO): Promise<Game> {
     const gameCreated = await this.prisma.game.create({ data: game });
 
     return {
