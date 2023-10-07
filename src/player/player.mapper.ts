@@ -21,6 +21,7 @@ export class PlayerMapper {
       new ID(player.id),
     );
   }
+
   static toPersistence(player: Player): PlayerDTO {
     return {
       id: player.getPropsCopy().id.value,
