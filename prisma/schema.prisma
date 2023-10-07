@@ -20,4 +20,7 @@ model Player {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   username String @unique
   games    Game[]
+  wins     Int
+  losses   Int
+  draws    Int
 }
