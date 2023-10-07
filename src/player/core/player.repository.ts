@@ -1,5 +1,5 @@
 import { Repository } from 'src/common/repository.base';
-import { Player } from './player.interface';
+import { Player } from './player.entity';
 
 export type PlayerRepository = Repository<Player>;
 
