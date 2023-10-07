@@ -11,6 +11,10 @@ export class GameMongoRepository implements GameRepository {
     this.prisma = new PrismaClient();
   }
 
+  update(entity: Game): Promise<Game> {
+    throw new Error('Method not implemented.');
+  }
+
   async create(gameEntity: Game): Promise<void> {
     const gameDTO = GameMapper.toPersistence(gameEntity);
     await this.prisma.game.create({ data: gameDTO });
