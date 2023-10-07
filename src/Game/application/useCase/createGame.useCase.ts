@@ -12,12 +12,12 @@ export interface CreateGameDTO {
 }
 
 @Injectable()
-export class CreateGame implements UseCase<CreateGameDTO, Promise<Game>> {
+export class CreateGame implements UseCase<CreateGameDTO, Promise<void>> {
   constructor(
     @Inject(GameRepository)
     private readonly gameRepository: GameRepository,
   ) {}
-  async run(createGameDTO: CreateGameDTO): Promise<Game> {
+  async run(createGameDTO: CreateGameDTO): Promise<void> {
     try {
       const game: Game = {
         id: createGameDTO.id,

@@ -4,7 +4,6 @@ import {
   CreateGameDTO,
 } from '../../application/useCase/createGame.useCase';
 import { GameMongoRepository } from '../repository/game.mongo.repository';
-import { Game } from 'src/game/core/game.interface';
 
 @Controller('games')
 export class GameController {
@@ -14,10 +13,8 @@ export class GameController {
   ) {}
 
   @Post()
-  async createGame(@Body() createGameDTO: CreateGameDTO): Promise<Game> {
+  async createGame(@Body() createGameDTO: CreateGameDTO): Promise<void> {
     const createGameUseCase = new CreateGame(this.gameMongoRepository);
-    const game = await createGameUseCase.run(createGameDTO);
-
-    return game;
+    await createGameUseCase.run(createGameDTO);
   }
 }

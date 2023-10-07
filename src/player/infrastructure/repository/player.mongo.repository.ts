@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
-import { Player } from 'src/player/core/player.interface';
+import { PrismaClient, Player as PlayerModel } from '@prisma/client';
+import { ID } from 'src/common/valueObjects/ID.valueObject';
+import { Player } from 'src/player/core/player.entity';
 import { PlayerRepository } from 'src/player/core/player.repository';
+import { PlayerMapper } from 'src/player/player.mapper';
 
 @Injectable()
 export class PlayerMongoRepository implements PlayerRepository {
@@ -10,17 +12,20 @@ export class PlayerMongoRepository implements PlayerRepository {
     this.prisma = new PrismaClient();
   }
 
-  async create(player: Player): Promise<Player> {
-    const playerCreated = await this.prisma.player.create({ data: player });
-
-    return playerCreated;
+  async create(entityPlayer: Player): Promise<void> {
+    const player = PlayerMapper.toPersistence(entityPlayer);
+    await this.prisma.player.create({ data: player });
   }
 
-  async findById(id: string): Promise<Player | undefined> {
-    const player = this.prisma.player.findUnique({ where: { id } });
+  async findById(id: ID): Promise<Player | undefined> {
+    const player: PlayerModel = await this.prisma.player.findUnique({
+      where: { id: id.value },
+    });
 
     if (!player) return undefined;
 
-    return player;
+    const playerDomain = PlayerMapper.toDomain(player);
+
+    return playerDomain;
   }
 }
