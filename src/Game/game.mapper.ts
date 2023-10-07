@@ -1,9 +1,9 @@
 import { ID } from '../common/valueObjects/ID.valueObject';
-import { Game, GameStatus } from './domain/game.entity';
+import { Game } from './domain/game.entity';
 
 export interface GameDTO {
   id: string;
-  status: string;
+  status: 'IN_PROGRESS' | 'FINISHED';
   turn: string;
   board: string[];
   playerId: string;
@@ -13,7 +13,7 @@ export class GameMapper {
   static toDomain(game: GameDTO) {
     return Game.create(
       {
-        status: game.status as GameStatus,
+        status: game.status,
         turn: game.turn,
         board: game.board,
         playerId: game.playerId,
