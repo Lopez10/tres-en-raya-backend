@@ -1,9 +1,9 @@
-import { v4 } from 'uuid';
+import { ObjectId } from 'mongodb';
 import { DomainPrimitive, ValueObject } from '../valueObject.base';
 
 export class ID extends ValueObject<string> {
   constructor(value?: string) {
-    super(value ? { value } : { value: v4() });
+    super(value ? { value } : { value: new ObjectId().toHexString() });
   }
 
   public get value(): string {
