@@ -1,13 +1,8 @@
 import { Entity } from '../../common/entity.base';
 import { ID } from '../../common/valueObjects/ID.valueObject';
 
-export enum GameStatus {
-  IN_PROGRESS = 'IN_PROGRESS',
-  FINISHED = 'FINISHED',
-}
-
 interface GameProps {
-  status: GameStatus;
+  status: 'IN_PROGRESS' | 'FINISHED';
   turn: string;
   board: string[];
   playerId: string;
