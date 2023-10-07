@@ -2,25 +2,15 @@ import { Inject, Injectable } from '@nestjs/common';
 import { GameRepository } from '../../domain/game.repository';
 import { UseCase } from '../../../common/useCase.base';
 import { Game } from '../../domain/game.entity';
-import { GameMapper } from '../../game.mapper';
-
-export interface CreateGameDTO {
-  id: string;
-  status: string;
-  turn: string;
-  board: string[];
-  playerId: string;
-}
+import { GameDTO, GameMapper } from '../../game.mapper';
 
 @Injectable()
-export class CreateGameUseCase
-  implements UseCase<CreateGameDTO, Promise<void>>
-{
+export class CreateGameUseCase implements UseCase<GameDTO, Promise<void>> {
   constructor(
     @Inject(GameRepository)
     private readonly gameRepository: GameRepository,
   ) {}
-  async run(createGameDTO: CreateGameDTO): Promise<void> {
+  async run(createGameDTO: GameDTO): Promise<void> {
     try {
       const game: Game = GameMapper.toDomain(createGameDTO);
       const gameCreated = await this.gameRepository.create(game);
