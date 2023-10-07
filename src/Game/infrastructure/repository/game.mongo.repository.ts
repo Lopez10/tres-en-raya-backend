@@ -1,6 +1,6 @@
 import { PrismaClient, Game as GameModel } from '@prisma/client';
-import { Game, GameStatusEnum } from '../../core/game.interface';
-import { GameRepository } from '../../core/game.repository';
+import { Game, GameStatusEnum } from '../../domain/game.interface';
+import { GameRepository } from '../../domain/game.repository';
 import { Injectable } from '@nestjs/common';
 import { CreateGameDTO } from 'src/game/application/useCase/createGame.useCase';
 

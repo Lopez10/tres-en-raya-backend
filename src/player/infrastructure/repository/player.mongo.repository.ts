@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClient, Player as PlayerModel } from '@prisma/client';
 import { ID } from 'src/common/valueObjects/ID.valueObject';
-import { Player } from 'src/player/core/player.entity';
-import { PlayerRepository } from 'src/player/core/player.repository';
+import { Player } from 'src/player/domain/player.entity';
+import { PlayerRepository } from 'src/player/domain/player.repository';
 import { PlayerMapper } from 'src/player/player.mapper';
 
 @Injectable()

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { UseCase } from 'src/common/useCase.base';
-import { Player } from 'src/player/core/player.entity';
-import { PlayerRepository } from 'src/player/core/player.repository';
+import { Player } from 'src/player/domain/player.entity';
+import { PlayerRepository } from 'src/player/domain/player.repository';
 import { PlayerDTO } from 'src/player/player.mapper';
 
 @Injectable()

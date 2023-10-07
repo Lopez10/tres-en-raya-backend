@@ -1,5 +1,5 @@
 import { ID } from 'src/common/valueObjects/ID.valueObject';
-import { Player } from './core/player.entity';
+import { Player } from './domain/player.entity';
 
 export interface PlayerDTO {
   id: string;

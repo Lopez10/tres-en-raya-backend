@@ -1,5 +1,5 @@
-import { Game } from 'src/game/core/game.interface';
-import { GameRepository } from 'src/game/core/game.repository';
+import { Game } from 'src/game/domain/game.interface';
+import { GameRepository } from 'src/game/domain/game.repository';
 
 export class GameMockRepository implements GameRepository {
   private games: Game[] = [];

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { GameRepository } from '../../core/game.repository';
-import { Game, GameStatusEnum as GameStatus } from '../../core/game.interface';
+import { GameRepository } from '../../domain/game.repository';
+import { Game, GameStatusEnum as GameStatus } from '../../domain/game.interface';
 import { UseCase } from 'src/common/useCase.base';
 
 export interface CreateGameDTO {
