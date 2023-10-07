@@ -1,4 +1,4 @@
-import { ID } from 'src/common/valueObjects/ID.valueObject';
+import { ID } from '../common/valueObjects/ID.valueObject';
 import { Player } from './domain/player.entity';
 
 export interface PlayerDTO {

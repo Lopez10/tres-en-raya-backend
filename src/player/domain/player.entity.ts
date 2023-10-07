@@ -1,5 +1,5 @@
-import { Entity } from 'src/common/entity.base';
-import { ID } from 'src/common/valueObjects/ID.valueObject';
+import { Entity } from '../../common/entity.base';
+import { ID } from '../../common/valueObjects/ID.valueObject';
 
 interface playerProps {
   username: string;

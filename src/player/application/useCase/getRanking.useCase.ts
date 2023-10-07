@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UseCase } from 'src/common/useCase.base';
-import { Player } from 'src/player/domain/player.entity';
-import { PlayerRepository } from 'src/player/domain/player.repository';
+import { UseCase } from '../../../common/useCase.base';
+import { Player } from '../../domain/player.entity';
+import { PlayerRepository } from '../../domain/player.repository';
 
 @Injectable()
 export class GetRankingUseCase implements UseCase<string, Promise<Player>> {
