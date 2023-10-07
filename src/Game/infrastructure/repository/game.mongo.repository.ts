@@ -23,7 +23,7 @@ export class GameMongoRepository implements GameRepository {
   }
 
   async findById(id: string): Promise<Game | undefined> {
-    const game = await this.prisma.game.findUnique({
+    const game: GameModel = await this.prisma.game.findUnique({
       where: { id },
     });
 
