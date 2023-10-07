@@ -10,10 +10,19 @@ export class PlayerMongoRepository implements PlayerRepository {
     this.prisma = new PrismaClient();
   }
 
-  findById(id: string): Promise<Player> {
-    throw new Error('Method not implemented.');
+  async create(player: Player): Promise<Player> {
+    const playerCreated = await this.prisma.player.create({ data: player });
+
+    return {
+      id: playerCreated.id,
+      username: playerCreated.username,
+      wins: playerCreated.wins,
+      losses: playerCreated.losses,
+      draws: playerCreated.draws,
+    };
   }
-  create(entity: Player): Promise<Player> {
+
+  findById(id: string): Promise<Player> {
     throw new Error('Method not implemented.');
   }
 }
