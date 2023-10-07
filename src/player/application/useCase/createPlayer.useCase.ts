@@ -4,19 +4,18 @@ import { Player } from 'src/player/core/player.interface';
 import { PlayerRepository } from 'src/player/core/player.repository';
 
 @Injectable()
-export class CreatePlayer implements UseCase<Player, void> {
+export class CreatePlayer implements UseCase<Player, Promise<Player>> {
   constructor(
     @Inject(PlayerRepository)
     private readonly playerRepository: PlayerRepository,
   ) {}
 
-  async run(player: Player): Promise<boolean> {
+  async run(player: Player): Promise<Player> {
     try {
-      await this.playerRepository.create(player);
-      return true;
+      const playerCreated = await this.playerRepository.create(player);
+      return playerCreated;
     } catch (error) {
-      console.log(error);
-      return false;
+      throw new Error(error);
     }
   }
 }
