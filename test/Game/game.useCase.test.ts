@@ -1,6 +1,6 @@
 import { GameMockRepository } from './game.mock.repository';
 import {
-  CreateGame,
+  CreateGameUseCase,
   CreateGameDTO,
 } from '../../src/game/application/useCase/createGame.useCase';
 import { ID } from '../../src/common/valueObjects/ID.valueObject';
@@ -21,7 +21,7 @@ describe('Create game', () => {
     };
     // WHEN
     const gameRepository = new GameMockRepository();
-    const createGame = new CreateGame(gameRepository);
+    const createGame = new CreateGameUseCase(gameRepository);
     await createGame.run(game);
 
     // THEN

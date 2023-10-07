@@ -13,7 +13,9 @@ export interface CreateGameDTO {
 }
 
 @Injectable()
-export class CreateGame implements UseCase<CreateGameDTO, Promise<void>> {
+export class CreateGameUseCase
+  implements UseCase<CreateGameDTO, Promise<void>>
+{
   constructor(
     @Inject(GameRepository)
     private readonly gameRepository: GameRepository,

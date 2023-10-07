@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { GameController } from './infrastructure/restAPI/game.controller';
 import { GameMongoRepository } from './infrastructure/repository/game.mongo.repository';
 import { GameRepository } from './domain/game.repository';
-import { CreateGame } from './application/useCase/createGame.useCase';
+import { CreateGameUseCase } from './application/useCase/createGame.useCase';
 
 @Module({
   controllers: [GameController],
@@ -14,7 +14,7 @@ import { CreateGame } from './application/useCase/createGame.useCase';
       provide: GameRepository,
       useClass: GameMongoRepository,
     },
-    CreateGame,
+    CreateGameUseCase,
   ],
 })
 export class GameModule {}

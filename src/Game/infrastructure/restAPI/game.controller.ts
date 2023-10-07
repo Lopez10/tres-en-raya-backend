@@ -1,6 +1,6 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
 import {
-  CreateGame,
+  CreateGameUseCase,
   CreateGameDTO,
 } from '../../application/useCase/createGame.useCase';
 import { GameMongoRepository } from '../repository/game.mongo.repository';
@@ -14,7 +14,7 @@ export class GameController {
 
   @Post()
   async createGame(@Body() createGameDTO: CreateGameDTO): Promise<void> {
-    const createGameUseCase = new CreateGame(this.gameMongoRepository);
+    const createGameUseCase = new CreateGameUseCase(this.gameMongoRepository);
     await createGameUseCase.run(createGameDTO);
   }
 }
