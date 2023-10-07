@@ -28,4 +28,16 @@ export class PlayerMongoRepository implements PlayerRepository {
 
     return playerDomain;
   }
+
+  async findByUsername(username: string): Promise<Player | undefined> {
+    const player: PlayerModel = await this.prisma.player.findUnique({
+      where: { username },
+    });
+
+    if (!player) return undefined;
+
+    const playerDomain = PlayerMapper.toDomain(player);
+
+    return playerDomain;
+  }
 }
