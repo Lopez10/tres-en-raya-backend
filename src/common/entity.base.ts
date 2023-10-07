@@ -28,6 +28,4 @@ export abstract class Entity<T> {
     };
     return Object.freeze(propsCopy);
   }
-
-  public abstract toPrimitives(): any;
 }
