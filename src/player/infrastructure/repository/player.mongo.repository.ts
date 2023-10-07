@@ -40,4 +40,16 @@ export class PlayerMongoRepository implements PlayerRepository {
 
     return playerDomain;
   }
+
+  async update(player: Player): Promise<Player> {
+    const playerToUpdate = PlayerMapper.toPersistence(player);
+    const playerUpdated = await this.prisma.player.update({
+      where: { id: playerToUpdate.id },
+      data: playerToUpdate,
+    });
+
+    const playerDomain = PlayerMapper.toDomain(playerUpdated);
+
+    return playerDomain;
+  }
 }

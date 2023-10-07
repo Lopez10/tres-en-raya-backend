@@ -18,4 +18,8 @@ export class GameMockRepository implements GameRepository {
 
     return GameMapper.toDomain(gameFounded);
   }
+
+  update(game: Game): Promise<Game> {
+    throw new Error('Method not implemented.');
+  }
 }
