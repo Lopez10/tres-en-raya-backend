@@ -13,16 +13,14 @@ export class PlayerMongoRepository implements PlayerRepository {
   async create(player: Player): Promise<Player> {
     const playerCreated = await this.prisma.player.create({ data: player });
 
-    return {
-      id: playerCreated.id,
-      username: playerCreated.username,
-      wins: playerCreated.wins,
-      losses: playerCreated.losses,
-      draws: playerCreated.draws,
-    };
+    return playerCreated;
   }
 
-  findById(id: string): Promise<Player> {
-    throw new Error('Method not implemented.');
+  async findById(id: string): Promise<Player | undefined> {
+    const player = this.prisma.player.findUnique({ where: { id } });
+
+    if (!player) return undefined;
+
+    return player;
   }
 }
