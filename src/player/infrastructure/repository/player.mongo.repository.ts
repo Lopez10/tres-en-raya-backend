@@ -42,9 +42,9 @@ export class PlayerMongoRepository implements PlayerRepository {
   }
 
   async update(player: Player): Promise<Player> {
-    const playerToUpdate = PlayerMapper.toPersistence(player);
+    const { id, ...playerToUpdate } = PlayerMapper.toPersistence(player);
     const playerUpdated = await this.prisma.player.update({
-      where: { id: playerToUpdate.id },
+      where: { id },
       data: playerToUpdate,
     });
 
