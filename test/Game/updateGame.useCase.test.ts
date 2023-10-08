@@ -30,7 +30,7 @@ describe('Update game', () => {
     // WHEN
     const gameDTO: GameDTO = {
       id: '123',
-      status: 'FINISHED',
+      status: 'IN_PROGRESS',
       turn: 'player1',
       board: ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'],
       playerId: 'player1',
@@ -44,6 +44,6 @@ describe('Update game', () => {
     expect(gameUpdated.getPropsCopy().board).toEqual(gameDTO.board);
 
     // AND
-    expect(gameUpdated.getPropsCopy().status).toEqual(gameDTO.status);
+    expect(gameUpdated.getPropsCopy().status).toEqual('FINISHED');
   });
 });
