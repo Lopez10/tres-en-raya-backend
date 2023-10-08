@@ -16,9 +16,12 @@ export class PlayerController {
   ) {}
 
   @Post()
-  async create(@Body() createPlayerDto: PlayerDTO): Promise<void> {
+  async create(@Body() username: string): Promise<PlayerDTO> {
     const createPlayerUseCase = new CreatePlayerUseCase(this.playerRepository);
-    await createPlayerUseCase.run(createPlayerDto);
+    const playerCreated = await createPlayerUseCase.run(username);
+    const playerDTO = PlayerMapper.toPersistence(playerCreated);
+
+    return playerDTO;
   }
 
   @Get(':username')
