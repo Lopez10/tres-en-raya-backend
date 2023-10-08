@@ -1,6 +1,9 @@
 import { Controller, Post, Body, Inject, Get, Param } from '@nestjs/common';
 import { PlayerMongoRepository } from '../repository/player.mongo.repository';
-import { CreatePlayerUseCase } from 'src/player/application/useCase/createPlayer.useCase';
+import {
+  CreatePlayerDTO,
+  CreatePlayerUseCase,
+} from 'src/player/application/useCase/createPlayer.useCase';
 import { PlayerDTO, PlayerMapper } from 'src/player/player.mapper';
 import { GetRankingUseCase } from 'src/player/application/useCase/getRanking.useCase';
 import {
@@ -16,9 +19,9 @@ export class PlayerController {
   ) {}
 
   @Post()
-  async create(@Body() username: string): Promise<PlayerDTO> {
+  async create(@Body() createPlayerDTO: CreatePlayerDTO): Promise<PlayerDTO> {
     const createPlayerUseCase = new CreatePlayerUseCase(this.playerRepository);
-    const playerCreated = await createPlayerUseCase.run(username);
+    const playerCreated = await createPlayerUseCase.run(createPlayerDTO);
     const playerDTO = PlayerMapper.toPersistence(playerCreated);
 
     return playerDTO;
