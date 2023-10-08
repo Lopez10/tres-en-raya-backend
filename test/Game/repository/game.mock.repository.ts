@@ -19,7 +19,11 @@ export class GameMockRepository implements GameRepository {
     return GameMapper.toDomain(gameFounded);
   }
 
-  update(game: Game): Promise<Game> {
-    throw new Error('Method not implemented.');
+  async update(game: Game): Promise<Game> {
+    const gameDTO = GameMapper.toPersistence(game);
+    const gameIndex = this.games.findIndex((game) => game.id === gameDTO.id);
+    this.games[gameIndex] = gameDTO;
+
+    return GameMapper.toDomain(gameDTO);
   }
 }
