@@ -12,9 +12,10 @@ export class GameController {
   ) {}
 
   @Post()
-  async createGame(@Body() createGameDTO: GameDTO): Promise<void> {
+  async createGame(@Body() createGameDTO: GameDTO): Promise<GameDTO> {
     const createGameUseCase = new CreateGameUseCase(this.gameMongoRepository);
-    await createGameUseCase.run(createGameDTO);
+    const gameCreated = await createGameUseCase.run(createGameDTO);
+    return GameMapper.toPersistence(gameCreated);
   }
 
   @Post('/move')
