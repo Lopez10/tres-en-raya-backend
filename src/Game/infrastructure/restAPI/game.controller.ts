@@ -1,5 +1,8 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
-import { CreateGameUseCase } from '../../application/useCase/createGame.useCase';
+import {
+  CreateGameDTO,
+  CreateGameUseCase,
+} from '../../application/useCase/createGame.useCase';
 import { GameMongoRepository } from '../repository/game.mongo.repository';
 import { GameDTO, GameMapper } from 'src/game/game.mapper';
 import { UpdateGameUseCase } from 'src/game/application/useCase/updateGame.useCase';
@@ -12,10 +15,12 @@ export class GameController {
   ) {}
 
   @Post()
-  async createGame(@Body() createGameDTO: GameDTO): Promise<GameDTO> {
+  async createGame(@Body() createGameDTO: CreateGameDTO): Promise<GameDTO> {
     const createGameUseCase = new CreateGameUseCase(this.gameMongoRepository);
     const gameCreated = await createGameUseCase.run(createGameDTO);
-    return GameMapper.toPersistence(gameCreated);
+    const gameDTO = GameMapper.toPersistence(gameCreated);
+
+    return gameDTO;
   }
 
   @Post('/move')
