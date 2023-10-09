@@ -6,12 +6,15 @@ import {
 import { GameMongoRepository } from '../repository/game.mongo.repository';
 import { GameDTO, GameMapper } from 'src/game/game.mapper';
 import { UpdateGameUseCase } from 'src/game/application/useCase/updateGame.useCase';
+import { PlayerMongoRepository } from 'src/player/infrastructure/repository/player.mongo.repository';
 
 @Controller('games')
 export class GameController {
   constructor(
     @Inject(GameMongoRepository)
     private readonly gameMongoRepository: GameMongoRepository,
+    @Inject(PlayerMongoRepository)
+    private readonly playerMongoRepository: PlayerMongoRepository,
   ) {}
 
   @Post()
@@ -25,7 +28,10 @@ export class GameController {
 
   @Post('/move')
   async move(@Body() gameDTO: GameDTO): Promise<GameDTO> {
-    const updateGameUseCase = new UpdateGameUseCase(this.gameMongoRepository);
+    const updateGameUseCase = new UpdateGameUseCase(
+      this.gameMongoRepository,
+      this.playerMongoRepository,
+    );
     const game = await updateGameUseCase.run(gameDTO);
     const updatedGameDTO = GameMapper.toPersistence(game);
 
