@@ -8,6 +8,7 @@ export interface GameDTO {
   turn: string;
   board: string[];
   playerId: string;
+  winner: string;
 }
 
 export class GameMapper {
@@ -18,6 +19,7 @@ export class GameMapper {
         turn: game.turn,
         board: game.board,
         playerId: game.playerId,
+        winner: game.winner,
       },
       new ID(game.id),
     );
@@ -29,6 +31,7 @@ export class GameMapper {
       turn: game.getPropsCopy().turn,
       board: game.getPropsCopy().board,
       playerId: game.getPropsCopy().playerId,
+      winner: game.getPropsCopy().winner,
     };
   }
 }

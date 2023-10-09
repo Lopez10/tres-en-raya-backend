@@ -14,6 +14,7 @@ model Game {
   turn     String
   player   Player   @relation(fields: [playerId], references: [id])
   playerId String   @db.ObjectId
+  winner   String?
 }
 
 model Player {

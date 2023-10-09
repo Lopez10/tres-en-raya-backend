@@ -23,9 +23,10 @@ export class CreateGameUseCase
         board: ['', '', '', '', '', '', '', '', ''],
         turn: playerId,
         status: 'IN_PROGRESS',
+        winner: null,
       });
-      await this.gameRepository.create(newEmptyGame);
 
+      await this.gameRepository.create(newEmptyGame);
       return newEmptyGame;
     } catch (error) {
       throw new Error(error);

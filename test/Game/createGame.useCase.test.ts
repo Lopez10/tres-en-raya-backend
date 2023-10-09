@@ -1,35 +1,33 @@
 import { GameMockRepository } from './repository/game.mock.repository';
-import { CreateGameUseCase } from '../../src/game/application/useCase/createGame.useCase';
-import { ID } from '../../src/common/valueObjects/ID.valueObject';
-import { GameDTO } from 'src/game/game.mapper';
+import {
+  CreateGameDTO,
+  CreateGameUseCase,
+} from '../../src/game/application/useCase/createGame.useCase';
 
 describe('Create game', () => {
   it(`
-    GIVEN a valid data game 
-    WHEN I create the game with the data
-    THEN the game is saved in the database
+    GIVEN a playerId to create an empty game
+    WHEN an empty game is created
+    THEN the game is saved in the database 
+    AND the playerId is the same
   `, async () => {
     // GIVEN
-    const game: GameDTO = {
-      id: '123',
-      status: 'IN_PROGRESS',
-      turn: '123',
-      board: ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'],
+    const createGameDTO: CreateGameDTO = {
       playerId: '123',
     };
+
     // WHEN
     const gameRepository = new GameMockRepository();
     const createGame = new CreateGameUseCase(gameRepository);
-    await createGame.run(game);
+    const gameCreated = await createGame.run(createGameDTO);
 
     // THEN
-    const gameID = new ID(game.id);
-    const gameSaved = await gameRepository.findById(gameID);
+    const gameSaved = await gameRepository.findById(
+      gameCreated.getPropsCopy().id,
+    );
+    expect(gameSaved).not.toBeUndefined();
 
-    expect(gameSaved.getPropsCopy().board).toEqual(game.board);
-    expect(gameSaved.getPropsCopy().status).toEqual(game.status);
-    expect(gameSaved.getPropsCopy().turn).toEqual(game.turn);
-    expect(gameSaved.getPropsCopy().playerId).toEqual(game.playerId);
-    expect(gameSaved.getPropsCopy().id.value).toEqual(game.id);
+    // AND
+    expect(gameSaved.getPropsCopy().playerId).toEqual(createGameDTO.playerId);
   });
 });

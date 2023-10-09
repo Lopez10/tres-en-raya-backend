@@ -22,6 +22,7 @@ describe('Update game', () => {
           turn: 'player1',
           board: ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', ''],
           playerId: 'player1',
+          winner: null,
         },
         new ID('123'),
       ),
@@ -34,6 +35,7 @@ describe('Update game', () => {
       turn: 'player1',
       board: ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'],
       playerId: 'player1',
+      winner: null,
     };
     await updateGame.run(gameDTO);
 

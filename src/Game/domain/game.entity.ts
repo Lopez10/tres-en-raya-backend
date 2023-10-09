@@ -7,6 +7,7 @@ interface GameProps {
   turn: string;
   board: string[];
   playerId: string;
+  winner: string;
 }
 
 export class Game extends Entity<GameProps> {
