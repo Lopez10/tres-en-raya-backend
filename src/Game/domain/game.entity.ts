@@ -93,6 +93,19 @@ export class Game extends Entity<GameProps> {
     }
   }
 
+  public getStateFinishedGame(): string {
+    if (!this.isFinished()) {
+      return;
+    }
+    if (this.props.winner === 'IA') {
+      return 'LOST';
+    }
+    if (this.props.winner === this.props.playerId) {
+      return 'WIN';
+    }
+    return 'DRAW';
+  }
+
   public static create(props: GameProps, id?: ID): Game {
     const game = new Game(props, id);
 

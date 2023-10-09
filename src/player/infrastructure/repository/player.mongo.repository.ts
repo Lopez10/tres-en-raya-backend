@@ -17,9 +17,9 @@ export class PlayerMongoRepository implements PlayerRepository {
     await this.prisma.player.create({ data: player });
   }
 
-  async findById(id: ID): Promise<Player | undefined> {
+  async findById(id: string): Promise<Player | undefined> {
     const player: PlayerModel = await this.prisma.player.findUnique({
-      where: { id: id.value },
+      where: { id },
     });
 
     if (!player) return undefined;
