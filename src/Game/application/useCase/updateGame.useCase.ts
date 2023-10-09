@@ -10,6 +10,7 @@ export class UpdateGameUseCase implements UseCase<GameDTO, Promise<Game>> {
     @Inject(GameRepository)
     private readonly gameRepository: GameRepository,
   ) {}
+
   async run(gameDTO: GameDTO): Promise<Game> {
     try {
       const game: Game = GameMapper.toDomain(gameDTO);
