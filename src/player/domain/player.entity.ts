@@ -21,7 +21,7 @@ export class Player extends Entity<playerProps> {
     };
 
     const rankingProperty = resultMapping[result];
-    this.props[rankingProperty] = +1;
+    this.props[rankingProperty] += 1;
   }
 
   public static create(props: playerProps, id?: ID): Player {
