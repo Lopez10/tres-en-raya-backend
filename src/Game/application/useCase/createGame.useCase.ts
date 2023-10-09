@@ -15,6 +15,7 @@ export class CreateGameUseCase
     @Inject(GameRepository)
     private readonly gameRepository: GameRepository,
   ) {}
+
   async run({ playerId }: CreateGameDTO): Promise<Game> {
     try {
       const newEmptyGame = Game.create({
