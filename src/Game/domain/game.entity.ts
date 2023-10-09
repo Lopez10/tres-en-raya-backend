@@ -53,6 +53,9 @@ export class Game extends Entity<GameProps> {
   }
 
   public moveIAAlgorithm(): void {
+    if (this.isFinished()) {
+      return;
+    }
     let bestMove = -1;
     let bestScore = -Infinity;
 
@@ -72,11 +75,23 @@ export class Game extends Entity<GameProps> {
     }
 
     this.props.board[bestMove] = 'O';
-    this.validateGameStatus();
+    this.props.turn = 'IA';
+
+    this.checkIsWinnerMovement();
+    this.checkAreMoreMovements();
+
+    this.props.turn = this.props.playerId;
   }
 
-  public validateGameStatus(): void {
-    if (!this.thereAreMovements() || this.isWinnerMovement()) {
+  public checkAreMoreMovements(): void {
+    if (!this.thereAreMovements()) {
+      this.finishTheGame();
+    }
+  }
+
+  public checkIsWinnerMovement(): void {
+    if (this.isWinnerMovement()) {
+      this.props.winner = this.props.turn;
       this.finishTheGame();
     }
   }

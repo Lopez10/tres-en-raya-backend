@@ -14,17 +14,17 @@ export class UpdateGameUseCase implements UseCase<GameDTO, Promise<Game>> {
   async run(gameDTO: GameDTO): Promise<Game> {
     try {
       const game: Game = GameMapper.toDomain(gameDTO);
+
       if (game.isFinished()) {
         throw new Error('The game is finished');
       }
 
-      game.validateGameStatus();
-
-      if (!game.isFinished()) {
-        game.moveIAAlgorithm();
-      }
+      game.checkIsWinnerMovement();
+      game.checkAreMoreMovements();
+      game.moveIAAlgorithm();
 
       const gameUpdated = await this.gameRepository.update(game);
+
       return gameUpdated;
     } catch (error) {
       throw new Error(error);

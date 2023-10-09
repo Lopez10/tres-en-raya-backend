@@ -20,6 +20,7 @@ export class GameMongoRepository implements GameRepository {
         turn: gameDTO.turn,
         board: gameDTO.board,
         playerId: gameDTO.playerId,
+        winner: gameDTO.winner,
       },
     });
     const gameDomain = GameMapper.toDomain(gameUpdated);
