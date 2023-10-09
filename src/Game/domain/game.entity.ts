@@ -77,21 +77,18 @@ export class Game extends Entity<GameProps> {
     this.props.board[bestMove] = 'O';
     this.props.turn = 'IA';
 
-    this.checkIsWinnerMovement();
-    this.checkAreMoreMovements();
+    this.checksAndFinishTheGame();
 
     this.props.turn = this.props.playerId;
   }
 
-  public checkAreMoreMovements(): void {
-    if (!this.thereAreMovements()) {
-      this.finishTheGame();
-    }
-  }
-
-  public checkIsWinnerMovement(): void {
+  public checksAndFinishTheGame(): void {
     if (this.isWinnerMovement()) {
       this.props.winner = this.props.turn;
+      this.finishTheGame();
+      return;
+    }
+    if (!this.thereAreMovements()) {
       this.finishTheGame();
     }
   }

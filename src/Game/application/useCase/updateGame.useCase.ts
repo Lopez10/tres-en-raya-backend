@@ -19,8 +19,7 @@ export class UpdateGameUseCase implements UseCase<GameDTO, Promise<Game>> {
         throw new Error('The game is finished');
       }
 
-      game.checkIsWinnerMovement();
-      game.checkAreMoreMovements();
+      game.checksAndFinishTheGame();
       game.moveIAAlgorithm();
 
       const gameUpdated = await this.gameRepository.update(game);
