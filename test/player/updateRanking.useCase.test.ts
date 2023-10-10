@@ -16,12 +16,14 @@ describe('Update ranking', () => {
     const playerRepository = new PlayerMockRepository();
     const updateRanking = new UpdateRankingUseCase(playerRepository);
     addPlayerToRepository(playerRepository);
+
     // WHEN
     const updateRankingDTO: UpdateRankingDTO = {
       username,
       result: 'WIN',
     };
     await updateRanking.run(updateRankingDTO);
+
     // THEN
     const playerUpdated = await playerRepository.findByUsername(username);
     expect(playerUpdated.getPropsCopy().username).toEqual(username);
