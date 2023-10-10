@@ -23,7 +23,7 @@ describe('Create game', () => {
 
     // THEN
     const gameSaved = await gameRepository.findById(
-      gameCreated.getPropsCopy().id,
+      gameCreated.getPropsCopy().id.value,
     );
     expect(gameSaved).not.toBeUndefined();
 

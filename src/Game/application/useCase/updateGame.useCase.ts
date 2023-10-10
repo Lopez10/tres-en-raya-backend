@@ -3,7 +3,7 @@ import { UseCase } from '../../../common/useCase.base';
 import { Game } from '../../domain/game.entity';
 import { GameRepository } from '../../domain/game.repository';
 import { GameDTO, GameMapper } from '../../game.mapper';
-import { PlayerRepository } from 'src/player/domain/player.repository';
+import { PlayerRepository } from '../../../player/domain/player.repository';
 
 @Injectable()
 export class UpdateGameUseCase implements UseCase<GameDTO, Promise<Game>> {
