@@ -2,6 +2,8 @@ import { Entity } from '../../common/entity.base';
 import { ID } from '../../common/valueObjects/ID.valueObject';
 import { minimax } from './miniMax';
 
+const OTHER_PLAYER = 'IA';
+
 interface GameProps {
   status: 'IN_PROGRESS' | 'FINISHED';
   turn: string;
@@ -25,7 +27,6 @@ export class Game extends Entity<GameProps> {
 
   public finishTheGame(): void {
     this.props.status = 'FINISHED';
-    // Update the player ranking with a lost|win|draw
   }
 
   public isWinnerMovement(): boolean {
@@ -61,12 +62,10 @@ export class Game extends Entity<GameProps> {
 
     for (let i = 0; i < this.props.board.length; i++) {
       if (this.props.board[i] === '') {
-        // Si la casilla está vacía, intenta colocar 'O' y evalúa el tablero
         this.props.board[i] = 'O';
         const score = -minimax(this.props.board, 0, false);
-        this.props.board[i] = ''; // Deshaz el movimiento
+        this.props.board[i] = '';
 
-        // Si la puntuación es mejor que la mejor puntuación actual, actualiza
         if (score > bestScore) {
           bestScore = score;
           bestMove = i;
@@ -75,7 +74,7 @@ export class Game extends Entity<GameProps> {
     }
 
     this.props.board[bestMove] = 'O';
-    this.props.turn = 'IA';
+    this.props.turn = OTHER_PLAYER;
 
     this.checksAndFinishTheGame();
 
@@ -97,7 +96,7 @@ export class Game extends Entity<GameProps> {
     if (!this.isFinished()) {
       return;
     }
-    if (this.props.winner === 'IA') {
+    if (this.props.winner === OTHER_PLAYER) {
       return 'LOST';
     }
     if (this.props.winner === this.props.playerId) {
