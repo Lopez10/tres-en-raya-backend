@@ -30,8 +30,8 @@ export class UpdateGameUseCase implements UseCase<GameDTO, Promise<Game>> {
 
       if (game.isFinished()) {
         const stateOfGame = game.getStateFinishedGame();
-        const player = await this.playerRepository.findById(
-          gameUpdated.getPropsCopy().playerId,
+        const player = await this.playerRepository.findByUsername(
+          gameUpdated.getPropsCopy().username,
         );
         player.updateRanking(stateOfGame);
         this.playerRepository.update(player);

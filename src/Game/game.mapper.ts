@@ -7,7 +7,7 @@ export interface GameDTO {
   status: 'IN_PROGRESS' | 'FINISHED';
   turn: string;
   board: string[];
-  playerId: string;
+  username: string;
   winner: string;
 }
 
@@ -18,7 +18,7 @@ export class GameMapper {
         status: game.status as 'IN_PROGRESS' | 'FINISHED',
         turn: game.turn,
         board: game.board,
-        playerId: game.playerId,
+        username: game.username,
         winner: game.winner,
       },
       new ID(game.id),
@@ -30,7 +30,7 @@ export class GameMapper {
       status: game.getPropsCopy().status,
       turn: game.getPropsCopy().turn,
       board: game.getPropsCopy().board,
-      playerId: game.getPropsCopy().playerId,
+      username: game.getPropsCopy().username,
       winner: game.getPropsCopy().winner,
     };
   }

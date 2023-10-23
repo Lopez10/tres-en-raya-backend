@@ -12,8 +12,8 @@ model Game {
   status   String
   board    String[]
   turn     String
-  player   Player   @relation(fields: [playerId], references: [id])
-  playerId String   @db.ObjectId
+  player   Player   @relation(fields: [username], references: [username])
+  username String
   winner   String?
 }
 

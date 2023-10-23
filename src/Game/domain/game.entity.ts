@@ -8,7 +8,7 @@ interface GameProps {
   status: 'IN_PROGRESS' | 'FINISHED';
   turn: string;
   board: string[];
-  playerId: string;
+  username: string;
   winner: string;
 }
 
@@ -78,7 +78,7 @@ export class Game extends Entity<GameProps> {
 
     this.checksAndFinishTheGame();
 
-    this.props.turn = this.props.playerId;
+    this.props.turn = this.props.username;
   }
 
   public checksAndFinishTheGame(): void {
@@ -99,7 +99,7 @@ export class Game extends Entity<GameProps> {
     if (this.props.winner === OTHER_PLAYER) {
       return 'LOST';
     }
-    if (this.props.winner === this.props.playerId) {
+    if (this.props.winner === this.props.username) {
       return 'WIN';
     }
     return 'DRAW';

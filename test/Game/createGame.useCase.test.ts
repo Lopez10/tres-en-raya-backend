@@ -14,6 +14,7 @@ describe('Create game', () => {
     // GIVEN
     const createGameDTO: CreateGameDTO = {
       playerId: '123',
+      username: 'username1',
     };
 
     // WHEN
@@ -28,6 +29,6 @@ describe('Create game', () => {
     expect(gameSaved).not.toBeUndefined();
 
     // AND
-    expect(gameSaved.getPropsCopy().playerId).toEqual(createGameDTO.playerId);
+    expect(gameSaved.getPropsCopy().username).toEqual(createGameDTO.username);
   });
 });

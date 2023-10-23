@@ -5,6 +5,7 @@ import { Game } from '../../domain/game.entity';
 
 export interface CreateGameDTO {
   playerId: string;
+  username: string;
 }
 
 @Injectable()
@@ -16,12 +17,12 @@ export class CreateGameUseCase
     private readonly gameRepository: GameRepository,
   ) {}
 
-  async run({ playerId }: CreateGameDTO): Promise<Game> {
+  async run({ username }: CreateGameDTO): Promise<Game> {
     try {
       const newEmptyGame = Game.create({
-        playerId,
+        username,
         board: ['', '', '', '', '', '', '', '', ''],
-        turn: playerId,
+        turn: username,
         status: 'IN_PROGRESS',
         winner: null,
       });
